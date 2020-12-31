@@ -1,0 +1,7 @@
+{
+  "require": {
+  	"ext-json": "*",
+    "coolpraz/php-blade": "^0.1.0",
+    "illuminate/database": "*"
+  }
+}
