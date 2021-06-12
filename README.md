@@ -1,7 +1,7 @@
-# Starter Kit 01
+# ISP | HRM
 
 
-### Featuers
+### Features
 
 - Codeigniter 3
 - Eloquent ORM
@@ -17,12 +17,12 @@
 Clone the repo
 
 ```shell
-git clone https://gitlab.com/projects-starter-kits/codeigniter-3-starter-kits/codeigniter-starter-kit-01.git my-project
+https://github.com/MakkiAbid/isp-hrm.git
 ```
 
 ## Step #02
 
-setp into folder
+step into folder
 
 ```shell
 cd my-project
@@ -30,7 +30,7 @@ cd my-project
 
 ## Step #03
 
-Install compser to get dependencies 
+Install composer to get dependencies 
 
 ```shell
 composer install

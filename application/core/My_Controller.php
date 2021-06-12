@@ -19,5 +19,17 @@ class My_Controller extends CI_Controller
         $this->blade = new PhpBlade($this->views, $this->cache);
     }
 
+    public function view($view, $data = [])
+    {
+        echo $this->blade->view()->make($view, $data);
+    }
+
+    public function JSONResponse($data)
+    {
+      $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
+
+    }
 
 }

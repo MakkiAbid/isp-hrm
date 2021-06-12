@@ -1,2 +1,21 @@
 // importing bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+// font awesome 5
+$fa-font-path: "../webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+// Simple Line Icons
+@import "~simple-line-icons/scss/simple-line-icons";
+
+// snackbar scss
+@import "~node-snackbar/src/sass/snackbar";
+
+// import atlantis.scss
+@import "atlantis";
+
+//Jquery Scrollbar
+@import "~jquery.scrollbar/sass/jquery.scrollbar";

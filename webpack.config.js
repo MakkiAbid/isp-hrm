@@ -4,10 +4,15 @@ const Encore = require('@symfony/webpack-encore');
 
 Encore
 	.setOutputPath('assets')
-	.setPublicPath('my-project/assets')
+	.setPublicPath('/assets')
 
 
 	.addEntry('app', './src/js/app.js')
+
+	.copyFiles({
+		from: './src/images',
+		to: './images/[path][name].[ext]'
+	})
 
 
 

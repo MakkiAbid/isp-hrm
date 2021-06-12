@@ -3,19 +3,23 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@yield("title")</title>
-	<link rel="stylesheet" href="{{ base_url('assets/app.css') }}">
+	<title>ISP HRM | @yield("title")</title>
+	{!! encore_entry_link_tags('app') !!}
 	@yield("styles")
 </head>
 <body>
-	
 
-	@yield("content")
+	<div class="wrapper">
+
+		@include('includes/topbar')
+		@include('includes/sidebar')
 
 
-	<script src="{{ base_url('assets/runtime.js') }}"></script>
-	<script src="{{ base_url('assets/vendors~app.js') }}"></script>
-	<script src="{{ base_url('assets/app.js') }}"></script>
+		@yield("content")
+	</div>
+
+
+	{!! encore_entry_script_tags('app') !!}
 	@yield("scripts")
 </body>
 </html>
