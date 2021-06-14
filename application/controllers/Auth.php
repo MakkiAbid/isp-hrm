@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends My_Controller
 {
@@ -39,7 +39,7 @@ class Auth extends My_Controller
                 ]);
             }else{
                 try{
-                    $user = User::where('email', $this->input->post('email'))->first();
+                    $user = UserModel::where('email', $this->input->post('email'))->first();
                     if($user){
                         if(password_verify($this->input->post('password'), $user->password)){
                             $this->session->set_userdata('user_id', $user->id);
@@ -105,7 +105,7 @@ class Auth extends My_Controller
                 ]);
             }else{
                 try {
-                     User::create([
+                     UserModel::create([
                         'name' => $this->input->post('name'),
                         'email' => $this->input->post('email'),
                         'role' => 'candidate',

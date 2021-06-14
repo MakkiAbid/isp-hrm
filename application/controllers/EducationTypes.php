@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Education extends My_Controller
+class EducationTypes extends My_Controller
 {
     public function __construct()
     {
@@ -14,7 +14,7 @@ class Education extends My_Controller
 
     public function index()
     {
-        $education_types = EducationTypes::get();
+        $education_types = EducationTypesModel::get();
         $this->view('pages.education.all', compact('education_types'));
     }
 
@@ -42,9 +42,9 @@ class Education extends My_Controller
                 ]);
             }else{
                 try {
-                    EducationTypes::create([
+                    EducationTypesModel::create([
                        'education' => $this->input->post('education'),
-                       'marks_type' => $this->input->post('marks_type')
+                       'marks_type' => strtoupper($this->input->post('marks_type'))
                     ]);
 
                     return $this->JSONResponse([
@@ -90,7 +90,7 @@ class Education extends My_Controller
                 ]);
             }else{
                 try {
-                    $education = EducationTypes::where('id', $id)->first();
+                    $education = EducationTypesModel::where('id', $id)->first();
                     if($education) {
                         $education->update([
                             'education' => $this->input->post('education'),
@@ -113,14 +113,14 @@ class Education extends My_Controller
                 }
             }
         }else{
-            $education_type = EducationTypes::where('id', $id)->first();
+            $education_type = EducationTypesModel::where('id', $id)->first();
             $this->view('pages.education.edit', compact('education_type'));
         }
     }
 
     public function delete($id)
     {
-        $education = EducationTypes::where('id', $id)->first();
+        $education = EducationTypesModel::where('id', $id)->first();
         if($education){
             $education->delete();
             return $this->JSONResponse([
@@ -142,7 +142,7 @@ class Education extends My_Controller
 
     public function get_education_types()
     {
-        $education_types = EducationTypes::get();
+        $education_types = EducationTypesModel::get();
         return $this->JSONResponse($education_types);
     }
 

@@ -46,7 +46,7 @@ class Admin extends My_Controller
                 ]);
             }else{
                 try {
-                    User::create([
+                    UserModel::create([
                         'name' => $this->input->post('name'),
                         'email' => $this->input->post('email'),
                         'role' => 'admin',

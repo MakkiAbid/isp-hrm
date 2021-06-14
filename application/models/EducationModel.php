@@ -1,9 +1,8 @@
 <?php
-
 use Illuminate\Database\Eloquent\Model;
 
-class EducationTypes extends Model
+class EducationModel extends Model
 {
-    protected $table = 'education_types';
+    protected $table = 'users_education';
     protected $guarded = [];
 }

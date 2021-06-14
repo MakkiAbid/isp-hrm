@@ -14,12 +14,12 @@ if(!function_exists('getInstance')){
 
 /**
  * auth function
- * @returns User Eloquent Object | NULL
+ * @returns UserModel Eloquent Object | NULL
  */
 if(!function_exists('auth')){
     function auth(){
         $user_id = getInstance()->session->userdata('user_id');
-        $user = User::where('id', $user_id)->first();
+        $user = UserModel::where('id', $user_id)->first();
         return $user ? $user : null;
     }
 }

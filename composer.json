@@ -3,5 +3,8 @@
   	"ext-json": "*",
     "coolpraz/php-blade": "^0.1.0",
     "illuminate/database": "*"
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.3"
   }
 }

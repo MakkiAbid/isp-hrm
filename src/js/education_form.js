@@ -4,7 +4,7 @@ let educational_degrees = [];
 const EDUCATION_FORM = {
 
     GET_EDUCATIONAL_DEGREES: function () {
-        $.get('/education/get_education_types', function (result) {
+        $.get('/educationtypes/get_education_types', function (result) {
             educational_degrees = result;
         });
     },
@@ -15,7 +15,7 @@ const EDUCATION_FORM = {
         for(let degree of educational_degrees) {
             degrees_options += `<option value="${degree.id}">${degree.education}</option>`;
         }
-        education_row_html += `<div class="row" id="education_row_wrapper_${total_fields}">` +
+        education_row_html += `<div class="row mb-2 education_row_wrapper" id="education_row_wrapper_${total_fields}">` +
                 `<div class="col-2 degree_field_wrapper">` +
                     `<label class="d-block"><strong>Degree</strong></label>` +
                     `<select class="form-control degree_field" name="education[${total_fields}][degree]" onchange="EDUCATION_FORM.RENDER_FIELDS(${total_fields})">${degrees_options}</select>` +
@@ -48,6 +48,9 @@ const EDUCATION_FORM = {
                     `<label class="d-block"><strong>&nbsp;</strong></label>` +
                     `<div class="btn btn-sm btn-danger mt-1" id="remove_education" onclick="EDUCATION_FORM.REMOVE_EDUCATION(${total_fields})"><i class="fas fa-times"/></div>` +
                 `</div>` +
+                `<div class="col-12">` +
+                    `<hr>` +
+                `</div>` +
             `</div>`;
 
         return education_row_html;
@@ -61,11 +64,15 @@ const EDUCATION_FORM = {
             $(`#education_row_wrapper_${row_no} .degree_field_wrapper select`).trigger('change');
         }, 500)
 
+        $('#save-btn').removeClass('d-none');
         total_fields++;
     },
 
     REMOVE_EDUCATION: function (row_no) {
         $(`#education_row_wrapper_${row_no}`).remove();
+        if ($('.education_row_wrapper').length === 0) {
+            $('#save-btn').addClass('d-none');
+        }
     },
 
     RENDER_FIELDS: function (row_no) {
