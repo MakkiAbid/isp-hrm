@@ -21,7 +21,7 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="/profile">
+                                <a href="{{ base_url('profile') }}">
                                     <span class="link-collapse">Edit Profile</span>
                                 </a>
                             </li>
@@ -35,32 +35,46 @@
                 </div>
             </div>
             <ul class="nav nav-primary">
-
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
-                        <i class="fas fa-user-friends"></i>
-                        <p>Users</p>
-                        <span class="caret"></span>
+                    <a href="{{ base_url('admin') }}">
+                        <i class="fas fa-user-shield"></i>
+                        <p>Admin</p>
                     </a>
-                    <div class="collapse" id="base">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="/admin">
-                                    <span class="sub-item">Admin</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <span class="sub-item">Employee</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
-                    <a href="/education">
-                        <i class="far fa-building"></i>
-                        <p>Education</p>
+                    <a href="{{ base_url('staff') }}">
+                        <i class="fas fa-user-astronaut"></i>
+                        <p>Staff</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ base_url('candidates') }}">
+                        <i class="fas fa-user-friends"></i>
+                        <p>Candidates</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ base_url('campus') }}">
+                        <i class="fas fa-university"></i>
+                        <p>Campus</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ base_url('departments') }}">
+                        <i class="fas fa-school"></i>
+                        <p>Departments</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ base_url('educationtypes') }}">
+                        <i class="fas fa-book-reader"></i>
+                        <p>Education Types</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ base_url('jobpost') }}">
+                        <i class="fas fa-newspaper"></i>
+                        <p>Post a Job</p>
                     </a>
                 </li>
             </ul>

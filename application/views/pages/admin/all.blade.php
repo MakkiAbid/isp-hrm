@@ -18,23 +18,48 @@
                                 </div>
                             </div>
                             <div class="col text-right">
-                                <a href="/admin/add" class="btn btn-sm btn-primary">Add Admin</a>
+                                <a href="{{ base_url('admin/add') }}" class="btn btn-sm btn-primary">Add Admin</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <form action="{{ current_url() }}" method="get">
+                            <div class="row d-flex justify-content-end">
+                                <div id="basic-datatables_filter" class="dataTables_filter mr-3">
+                                    <label>Search:<input name="search-term" type="search" class="form-control" placeholder=""></label>
+                                </div>
+                            </div>
+                        </form>
+                        <table id="all-admins" class="table table-striped table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-
+                                @forelse($admins as $admin)
+                                    <tr>
+                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $admin->email }}</td>
+                                        <td>{{ $admin->role }}</td>
+                                        <td>
+                                            <a href="{{ base_url('admin/edit/'.$admin->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="{{ base_url('admin/delete/'.$admin->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr class="text-center">
+                                        <td colspan="4">No Data Found</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            {!! $links !!}
+                        </nav>
                     </div>
                 </div>
             </div>

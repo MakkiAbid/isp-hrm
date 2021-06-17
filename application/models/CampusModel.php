@@ -1,14 +1,15 @@
 <?php
-
 use Illuminate\Database\Eloquent\Model;
 
-class EducationTypesModel extends Model
+class CampusModel extends Model
 {
-    protected $table = 'education_types';
+
+    protected $table = 'campus';
     protected $guarded = [];
 
     public function job_posts()
     {
         return $this->hasMany(JobPostModel::class);
     }
+
 }

@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                             <div class="col text-right">
-                                <a href="{{ base_url('education/add') }}" class="btn btn-sm btn-primary">Add Education</a>
+                                <a href="{{ base_url('educationtypes/add') }}" class="btn btn-sm btn-primary">Add Education</a>
                             </div>
                         </div>
                     </div>
@@ -35,8 +35,8 @@
                                 <td>{{ $education->education }}</td>
                                 <td>{{ ucwords($education->marks_type )}}</td>
                                 <td>
-                                    <a href="{{ base_url('education/edit/'.$education->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ base_url('education/delete/'.$education->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
+                                    <a href="{{ base_url('educationtypes/edit/'.$education->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ base_url('educationtypes/delete/'.$education->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

@@ -1,29 +1,48 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UsersInfo extends My_Controller
+class Staff extends My_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        if(!auth()) {
+        if(!auth()){
             redirect('auth/login');
         }
     }
 
     public function index()
     {
+        $config = $this->config->item('pagination');
+        $config["base_url"] = base_url() . "staff";
+        $config["total_rows"] = UserModel::getCountStaff();
+        $config["per_page"] = 10;
+        $config["uri_segment"] = 2;
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
+        $data["staffs"] = UserModel::getStaffWithPaginate($config["per_page"], $page);
+        $data['links'] = $this->pagination->create_links();
+        $this->view('pages.staff.all', $data);
+    }
+
+    public function add()
+    {
         if($this->input->is_ajax_request()) {
             $config = array(
                 [
                     'field' => 'name',
-                    'label' => 'Name',
+                    'label' => 'Full name',
                     'rules' => 'required'
                 ],
                 [
                     'field' => 'email',
                     'label' => 'Email',
-                    'rules' => 'required|valid_email'
+                    'rules' => 'required|valid_email|is_unique[users.email]'
+                ],
+                [
+                    'field' => 'password',
+                    'label' => 'Password',
+                    'rules' => 'required'
                 ],
                 [
                     'field' => 'address',
@@ -65,6 +84,7 @@ class UsersInfo extends My_Controller
                     'label' => 'CNIC',
                     'rules' => 'required|regex_match[/^([0-9]{5})[\-]([0-9]{7})[\-]([0-9]{1})+/]|is_unique[personal_info.cnic]'
                 ]
+
             );
             $this->form_validation->set_rules($config);
             if($this->form_validation->run() === FALSE) {
@@ -74,9 +94,16 @@ class UsersInfo extends My_Controller
                     'messages' => $this->form_validation->error_array()
                 ]);
             }else{
-                try{
+                try {
+                    $user = UserModel::create([
+                        'name' => $this->input->post('name'),
+                        'email' => $this->input->post('email'),
+                        'role' => 'staff',
+                        'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+                    ]);
+
                     UsersInfoModel::create([
-                        'user_id' => auth()->id,
+                        'user_id' => $user->id,
                         'city' => $this->input->post('city'),
                         'address' => $this->input->post('address'),
                         'gender' => $this->input->post('gender'),
@@ -87,12 +114,13 @@ class UsersInfo extends My_Controller
                     ]);
 
                     return $this->JSONResponse([
-                       'error' => false,
-                       'form' => false,
-                       'messages' => 'Personal Information updated successfully!'
+                        'error' => false,
+                        'form' => false,
+                        'redirect_url' => base_url('staff'),
+                        'messages' => 'Staff added successfully!'
                     ]);
 
-                }catch (\Exception $e){
+                }catch (\Exception $e) {
                     return $this->JSONResponse([
                         'error' => true,
                         'form' => false,
@@ -100,6 +128,9 @@ class UsersInfo extends My_Controller
                     ]);
                 }
             }
+        }else {
+            echo $this->view('pages.staff.add');
         }
     }
+
 }

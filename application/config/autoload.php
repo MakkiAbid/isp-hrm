@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'form_validation', 'session');
+$autoload['libraries'] = array('database', 'form_validation', 'session', 'pagination');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array('url', 'general', 'form');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload['config'] = array('pagination');
 
 /*
 | -------------------------------------------------------------------
@@ -137,5 +137,8 @@ $autoload['model'] = array(
     'EducationTypesModel',
     'EducationModel',
     'UsersInfoModel',
-    'UsersExpModel'
+    'UsersExpModel',
+    'CampusModel',
+    'DepartmentsModel',
+    'JobPostModel'
 );

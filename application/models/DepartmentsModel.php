@@ -1,10 +1,9 @@
 <?php
-
 use Illuminate\Database\Eloquent\Model;
 
-class EducationTypesModel extends Model
+class DepartmentsModel extends Model
 {
-    protected $table = 'education_types';
+    protected $table = 'departments';
     protected $guarded = [];
 
     public function job_posts()

@@ -1,21 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-class EducationTypes extends My_Controller
+class Departments extends My_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        if(!auth()) {
+        if(!auth()){
             redirect('auth/login');
         }
     }
 
     public function index()
     {
-        $education_types = EducationTypesModel::get();
-        $this->view('pages.education.all', compact('education_types'));
+        $departments = DepartmentsModel::all();
+        $this->view('pages.departments.all', compact('departments'));
     }
 
     public function add()
@@ -23,14 +22,9 @@ class EducationTypes extends My_Controller
         if($this->input->is_ajax_request()) {
             $config = array(
                 [
-                    'field' => 'education',
-                    'label' => 'Education',
-                    'rules' => 'required|is_unique[education_types.education]'
-                ],
-                [
-                    'field' => 'marks_type',
-                    'label' => 'Marks Type',
-                    'rules' => 'required'
+                    'field' => 'name',
+                    'label' => 'Department',
+                    'rules' => 'required|is_unique[departments.name]'
                 ]
             );
             $this->form_validation->set_rules($config);
@@ -42,18 +36,18 @@ class EducationTypes extends My_Controller
                 ]);
             }else{
                 try {
-                    EducationTypesModel::create([
-                       'education' => $this->input->post('education'),
-                       'marks_type' => strtoupper($this->input->post('marks_type'))
+                    DepartmentsModel::create([
+                        'name' => $this->input->post('name')
                     ]);
 
                     return $this->JSONResponse([
-                       'error' => false,
-                       'form' => false,
-                       'redirect_url' => base_url('educationtypes'),
-                       'messages' => 'Education added successfully'
+                        'error' => false,
+                        'form' => false,
+                        'redirect_url' => base_url('departments'),
+                        'messages' => 'Department added successfully!'
                     ]);
-                }catch (\Exception $e){
+
+                }catch (\Exception $e) {
                     return $this->JSONResponse([
                         'error' => true,
                         'form' => false,
@@ -61,8 +55,8 @@ class EducationTypes extends My_Controller
                     ]);
                 }
             }
-        }else{
-            $this->view('pages.education.add');
+        }else {
+            echo $this->view('pages.departments.add');
         }
     }
 
@@ -71,14 +65,9 @@ class EducationTypes extends My_Controller
         if($this->input->is_ajax_request()) {
             $config = array(
                 [
-                    'field' => 'education',
-                    'label' => 'Education',
-                    'rules' => 'required'
-                ],
-                [
-                    'field' => 'marks_type',
-                    'label' => 'Marks Type',
-                    'rules' => 'required'
+                    'field' => 'name',
+                    'label' => 'Department Name',
+                    'rules' => 'required|is_unique[departments.name]'
                 ]
             );
             $this->form_validation->set_rules($config);
@@ -90,18 +79,17 @@ class EducationTypes extends My_Controller
                 ]);
             }else{
                 try {
-                    $education = EducationTypesModel::where('id', $id)->first();
-                    if($education) {
-                        $education->update([
-                            'education' => $this->input->post('education'),
-                            'marks_type' => $this->input->post('marks_type')
+                    $departments = DepartmentsModel::where('id', $id)->first();
+                    if($departments) {
+                        $departments->update([
+                            'name' => $this->input->post('name')
                         ]);
 
                         return $this->JSONResponse([
                             'error' => false,
                             'form' => false,
-                            'redirect_url' => base_url('educationtypes'),
-                            'messages' => 'Education updated successfully'
+                            'redirect_url' => base_url('departments'),
+                            'messages' => 'Department updated successfully'
                         ]);
                     }
                 }catch (\Exception $e){
@@ -113,37 +101,32 @@ class EducationTypes extends My_Controller
                 }
             }
         }else{
-            $education_type = EducationTypesModel::where('id', $id)->first();
-            $this->view('pages.education.edit', compact('education_type'));
+            $departments = DepartmentsModel::where('id', $id)->first();
+            $this->view('pages.departments.edit', compact('departments'));
         }
+
     }
 
     public function delete($id)
     {
-        $education = EducationTypesModel::where('id', $id)->first();
-        if($education){
-            $education->delete();
+        $departments = DepartmentsModel::where('id', $id)->first();
+        if($departments){
+            $departments->delete();
             return $this->JSONResponse([
                 'error' => false,
                 'form' => false,
-                'redirect_url' => base_url('educationtypes'),
-                'messages' => 'Education deleted successfully'
+                'redirect_url' => base_url('departments'),
+                'messages' => 'Departments deleted successfully'
             ]);
         }else{
             return $this->JSONResponse([
                 'error' => true,
                 'form' => false,
-                'redirect_url' => base_url('educationtypes'),
+                'redirect_url' => base_url('departments'),
                 'messages' => 'Something went wrong please try again.'
             ]);
         }
 
-    }
-
-    public function get_education_types()
-    {
-        $education_types = EducationTypesModel::get();
-        return $this->JSONResponse($education_types);
     }
 
 }

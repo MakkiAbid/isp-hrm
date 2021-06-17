@@ -12,14 +12,13 @@ const Snackbar = require('node-snackbar');
 window.$ = window.jQuery = require("jquery");
 
 
-// importing popperjs
+// importing popper.js
 window.Popper = require("popper.js").default;
-
 
 // importing bootstrap
 require('bootstrap');
 
-// import atlantus
+// import atlantis
 import "./atlantis";
 
 import EDUCATION_FORM from "./education_form";
