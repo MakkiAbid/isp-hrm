@@ -33,6 +33,10 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Role</th>
+                                    <th scope="col">City</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">CNIC #</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -42,13 +46,17 @@
                                         <td>{{ $candidate->name }}</td>
                                         <td>{{ $candidate->email }}</td>
                                         <td>{{ $candidate->role }}</td>
+                                        <td>{{ $candidate->personal_info->city }}</td>
+                                        <td>{{ $candidate->personal_info->address }}</td>
+                                        <td>{{ $candidate->personal_info->gender }}</td>
+                                        <td>{{ $candidate->personal_info->cnic }}</td>
                                         <td>
                                             <a href="{{ base_url('candidates/delete/'.$candidate->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="4">No Data Found</td>
+                                        <td colspan="8">No Data Found</td>
                                     </tr>
                                 @endforelse
                                 </tbody>

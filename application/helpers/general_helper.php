@@ -57,3 +57,15 @@ if(!function_exists('encore_entry_link_tags')){
         return $tags;
     }
 }
+
+function getCountAdmins() {
+    return UserModel::where('role', 'admin')->count();
+}
+
+function getCountStaff() {
+    return UserModel::where('role', 'staff')->count();
+}
+
+function getCountCandidates() {
+    return UserModel::where('role', 'candidate')->count();
+}

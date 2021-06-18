@@ -38,6 +38,7 @@
                     @endif
                 </div>
             </div>
+            @if(auth()->role == 'admin')
             <ul class="nav nav-primary">
                 <li class="nav-item">
                     <a href="{{ base_url('admin') }}">
@@ -82,6 +83,7 @@
                     </a>
                 </li>
             </ul>
+            @endif
         </div>
     </div>
 </div>

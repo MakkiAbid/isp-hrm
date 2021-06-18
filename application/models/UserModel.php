@@ -19,6 +19,10 @@ class UserModel extends Model{
                 ->orWhere('email', 'LIKE', "%{$searchKeyWord}%")
                 ->where('role', $role);
         }
+        if($role === 'candidate' || $role === 'staff'){
+            $data->has('personal_info');
+        }
+
 
             return $data->skip($start)
             ->limit($limit)
@@ -35,6 +39,11 @@ class UserModel extends Model{
                 ->where('role', $role);;
         }
         return $data->count();
+    }
+
+    public function personal_info()
+    {
+        return $this->hasOne(UsersInfoModel::class, 'user_id', 'id');
     }
 
 
