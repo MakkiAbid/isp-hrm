@@ -13,11 +13,14 @@
                         <span>
                             {{ auth()->name }}
                             <span class="user-level">{{ ucwords(auth()->role) }}</span>
-                            <span class="caret"></span>
+                            @if(auth()->role == 'candidate')
+                                <span class="caret"></span>
+                            @endif
                         </span>
                     </a>
                     <div class="clearfix"></div>
 
+                    @if(auth()->role == 'candidate')
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
@@ -32,6 +35,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endif
                 </div>
             </div>
             <ul class="nav nav-primary">

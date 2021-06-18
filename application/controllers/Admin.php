@@ -17,25 +17,14 @@ class Admin extends My_Controller
         $searchKeyWord = $this->input->get('search-term') ?? '';
         $config = $this->config->item('pagination');
         $config["base_url"] = base_url() . "admin";
-        $config["total_rows"] = UserModel::getCountAdmin($searchKeyWord);
+        $config["total_rows"] = UserModel::getCountUsers($searchKeyWord, 'admin');
         $config["per_page"] = 10;
         $config["uri_segment"] = 2;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
-        $data["admins"] = UserModel::getAdminWithPaginate($config["per_page"], $page, $searchKeyWord);
+        $data["admins"] = UserModel::getUsersWithPaginate($config["per_page"], $page, $searchKeyWord, 'admin');
         $data['links'] = $this->pagination->create_links();
         echo $this->view('pages.admin.all', $data);
-    }
-
-    public function ajax_search()
-    {
-        $searchTerm = $this->input->post('search-term');
-        $data = UserModel::where('name','LIKE',"%{$searchTerm}%")
-            ->orWhere('email', 'LIKE', "%{$searchTerm}%")
-            ->get();
-
-        dd($data);
-
     }
 
     public function add()

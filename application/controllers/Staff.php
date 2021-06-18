@@ -13,14 +13,15 @@ class Staff extends My_Controller
 
     public function index()
     {
+        $searchKeyWord = $this->input->get('search-term') ?? '';
         $config = $this->config->item('pagination');
         $config["base_url"] = base_url() . "staff";
-        $config["total_rows"] = UserModel::getCountStaff();
+        $config["total_rows"] = UserModel::getCountUsers($searchKeyWord, 'staff');
         $config["per_page"] = 10;
         $config["uri_segment"] = 2;
         $this->pagination->initialize($config);
         $page = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
-        $data["staffs"] = UserModel::getStaffWithPaginate($config["per_page"], $page);
+        $data["staffs"] = UserModel::getUsersWithPaginate($config["per_page"], $page, $searchKeyWord, 'staff');
         $data['links'] = $this->pagination->create_links();
         $this->view('pages.staff.all', $data);
     }

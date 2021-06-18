@@ -9,14 +9,15 @@ class UserModel extends Model{
     protected $guarded = [];
 
 
-    public function scopeGetAdminWithPaginate($query, $limit, $start, $searchKeyWord)
+    public function scopeGetUsersWithPaginate($query, $limit, $start, $searchKeyWord, $role)
     {
         $data = $query->orderBy("id", "DESC")
-            ->where('role', 'admin');
+                ->where('role', $role);
 
         if(!empty($searchKeyWord)){
             $data->where('name','LIKE',"%{$searchKeyWord}%")
-                ->orWhere('email', 'LIKE', "%{$searchKeyWord}%");
+                ->orWhere('email', 'LIKE', "%{$searchKeyWord}%")
+                ->where('role', $role);
         }
 
             return $data->skip($start)
@@ -25,45 +26,15 @@ class UserModel extends Model{
 
     }
 
-    public function scopeGetCountAdmin($query, $searchKeyWord)
+    public function scopeGetCountUsers($query, $searchKeyWord, $role)
     {
-        $data = $query->where('role', 'admin');
+        $data = $query->where('role', $role);
         if(!empty($searchKeyWord)){
             $data->where('name','LIKE',"%{$searchKeyWord}%")
-                ->orWhere('email', 'LIKE', "%{$searchKeyWord}%");
+                ->orWhere('email', 'LIKE', "%{$searchKeyWord}%")
+                ->where('role', $role);;
         }
         return $data->count();
-    }
-
-    public function scopeGetStaffWithPaginate($query, $limit, $start)
-    {
-        return $query->orderBy("id", "DESC")
-            ->where('role', 'staff')
-            ->skip($start)
-            ->limit($limit)
-            ->get();
-
-    }
-
-    public function scopeGetCountStaff($query)
-    {
-        return $query->where('role', 'staff')
-            ->count();
-    }
-
-    public function scopeGetCandidateWithPaginate($query, $limit, $start)
-    {
-        $data =  $query->orderBy("id", "DESC")
-            ->where('role', 'candidate')
-            ->skip($start)
-            ->limit($limit)
-            ->get();
-
-    }
-
-    public function scopeGetCountCandidate($query)
-    {
-        return $query->where('role', 'candidate')->count();
     }
 
 

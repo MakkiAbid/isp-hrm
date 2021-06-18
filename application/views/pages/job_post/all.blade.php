@@ -33,7 +33,6 @@
                                     <th scope="col">No. of Seats</th>
                                     <th scope="col">Experience</th>
                                     <th scope="col">Last Submission Date</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -45,18 +44,16 @@
                                         <td>{{ $job_post->department->name }}</td>
                                         <td>{{ $job_post->education_types->education }}</td>
                                         <td>{{ $job_post->no_of_seats }}</td>
-                                        <td>{{ $job_post->minimum_experience }}</td>
+                                        <td>{{ $job_post->minimum_experience == 0 ? 'Fresher' : $job_post->minimum_experience.' Years' }}</td>
                                         <td>{{ $job_post->last_submission_date }}</td>
                                         <td>
                                             @if($job_post->is_publish == 1)
-                                                <span class="badge badge-primary">Active</span>
+                                                <a href="{{ base_url('jobpost/update_jobstatus/'.$job_post->id) }}" class="btn btn-sm btn-primary">Active</a>
                                             @else
-                                                <span class="badge badge-warning">Inactive</span>
+                                                <a href="{{ base_url('jobpost/update_jobstatus/'.$job_post->id) }}" class="btn btn-sm btn-warning">Inactive</a>
                                             @endif
-                                        </td>
-                                        <td>
-                                            <a href="{{ base_url('job_post/edit/'.$job_post->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                            <a href="{{ base_url('job_post/delete/'.$job_post->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
+                                            <a href="{{ base_url('jobpost/edit/'.$job_post->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                            <a href="{{ base_url('jobpost/delete/'.$job_post->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @empty

@@ -23,6 +23,13 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <form action="{{ current_url() }}" method="get">
+                                <div class="row d-flex justify-content-end">
+                                    <div id="basic-datatables_filter" class="dataTables_filter mr-3">
+                                        <label>Search:<input name="search-term" type="search" class="form-control" placeholder=""></label>
+                                    </div>
+                                </div>
+                            </form>
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -33,7 +40,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($staffs as $staff)
+                                    @forelse($staffs as $staff)
                                         <tr>
                                             <td>{{ $staff->name }}</td>
                                             <td>{{ $staff->email }}</td>
@@ -43,7 +50,11 @@
                                                 <a href="{{ base_url('staff/delete/'.$staff->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr class="text-center">
+                                            <td colspan="4">No Data Found</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                             <nav aria-label="Page navigation example">
