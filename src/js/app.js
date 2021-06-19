@@ -65,6 +65,84 @@ window.notification = function notification(message, color="primary", duration=2
 
 
 const loading_spinner = `<i class="fas fa-circle-notch fa-2x fa-spin"></i>`;
+// Append Modal against user_id
+$(".fetch-btn").on('click', function (event) {
+   event.preventDefault();
+    $("#CandidateDetails").modal('show');
+    $.ajax({
+      url: $(this).attr('href'),
+      type: 'post',
+      beforeSend: () => {
+          console.log($("#CandidateDetails .modal-body"));
+          $("#CandidateDetails .modal-body").html(`
+            <div class="d-flex py-5 justify-content-center align-items-center">${loading_spinner}</div>
+          `);
+      },
+      success: function (data) {
+          console.log(data);
+          let generated_html = '';
+          if(data){
+              let educations = '';
+              let experiences = '';
+              data.educations.forEach(education => {
+                educations += `
+                    <tr>
+                        <td>${education.education}</td>
+                        <td>${education.obtained} ${education.marks_type}</td>
+                        <td>${education.total} ${education.marks_type}</td>
+                        <td>${education.year}</td>
+                        <td>${education.institute}</td>
+                    </tr>
+                `;
+              });
+              data.experiences.forEach(experience => {
+                  experiences += `
+                    <tr>
+                        <td>${experience.company}</td>
+                        <td>${experience.designation}</td>
+                        <td>${experience.start_date}</td>
+                        <td>${experience.end_date}</td>
+                    </tr>
+                `;
+              });
+              let generated_html = `
+                <h3>Educations</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Education</th>
+                            <th>Obtained</th>
+                            <th>Total</th>
+                            <th>Year</th>
+                            <th>Institute</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${educations}
+                    </tbody>
+                </table>
+                <h3>Experiences</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Designation</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${experiences}
+                    </tbody>
+                </table>
+              `;
+              $("#CandidateDetails .modal-body").html(generated_html);
+          }
+      }
+   });
+});
+
+
 // Delete AJAX
 $(".delete-btn").on('click', function (event) {
     event.preventDefault();

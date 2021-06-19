@@ -46,5 +46,15 @@ class UserModel extends Model{
         return $this->hasOne(UsersInfoModel::class, 'user_id', 'id');
     }
 
+    public function user_education()
+    {
+        return $this->hasMany(EducationModel::class, 'user_id', 'id');
+    }
+
+    public function user_experience()
+    {
+        return $this->hasMany(UsersExpModel::class, 'user_id', 'id');
+    }
+
 
 }

@@ -51,6 +51,10 @@
                                         <td>{{ $candidate->personal_info->gender }}</td>
                                         <td>{{ $candidate->personal_info->cnic }}</td>
                                         <td>
+                                            <!-- Button trigger modal -->
+                                            <a href="{{ base_url('candidates/fetch_details/'.$candidate->id) }}" class="btn btn-sm btn-primary fetch-btn">
+                                                <i class="fas fa-info-circle"></i>
+                                            </a>
                                             <a href="{{ base_url('candidates/delete/'.$candidate->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -66,6 +70,27 @@
                             </nav>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="CandidateDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-print"></i></button>
                 </div>
             </div>
         </div>

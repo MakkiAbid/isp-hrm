@@ -26,6 +26,45 @@ class Candidates extends My_Controller
         $this->view('pages.candidates.all', $data);
     }
 
+    public function fetch_details($id)
+    {
+
+        $data = array();
+        $details = UserModel::where('id', $id)
+            ->has('user_education.education_type')
+            ->has('user_experience')
+            ->first();
+
+        $data['educations'] = array();
+        $data['experiences'] = array();
+
+        if($details){
+            foreach ($details->user_education as $key => $value){
+                array_push($data['educations'], [
+                    'education' => $value->education_type->education,
+                    'marks_type' => $value->education_type->marks_type,
+                    'obtained' => $value->obtained,
+                    'total' => $value->total,
+                    'year' => $value->year,
+                    'institute' => $value->institute,
+                ]);
+            }
+
+            foreach($details->user_experience as $key => $value){
+                array_push($data['experiences'], [
+                   'company' => $value->company,
+                    'designation' => $value->designation,
+                    'start_date' => $value->start_date,
+                    'end_date' => $value->end_date
+                ]);
+            }
+
+            return $this->JSONResponse($data);
+        }else {
+            return $this->JSONResponse('Something went wrong');
+        }
+    }
+
     public function delete($id)
     {
         $candidate = UserModel::where('id', $id)->first();
