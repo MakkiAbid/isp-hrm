@@ -12,17 +12,19 @@ class UserModel extends Model{
     public function scopeGetUsersWithPaginate($query, $limit, $start, $searchKeyWord, $role)
     {
         $data = $query->orderBy("id", "DESC")
-                ->where('role', $role);
+                ->orWhere('role', $role);
 
         if(!empty($searchKeyWord)){
-            $data->where('name','LIKE',"%{$searchKeyWord}%")
-                ->orWhere('email', 'LIKE', "%{$searchKeyWord}%")
+            $data->where('name','LIKE',"{$searchKeyWord}%")
+                ->where('email', 'LIKE', "{$searchKeyWord}%")
+                ->with('personal_info')->orWhereHas('personal_info', function ($query) use ($role, $searchKeyWord) {
+                    $query->where('city', 'LIKE', "{$searchKeyWord}%")
+                          ->orWhere('address', 'LIKE', "{$searchKeyWord}%")
+                          ->orWhere('gender', 'LIKE', "{$searchKeyWord}%")
+                          ->orWhere('cnic', 'LIKE', "{$searchKeyWord}%");
+                })
                 ->where('role', $role);
         }
-        if($role === 'candidate' || $role === 'staff'){
-            $data->has('personal_info');
-        }
-
 
             return $data->skip($start)
             ->limit($limit)
