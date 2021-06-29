@@ -76,14 +76,23 @@
                         <p>Education Types</p>
                     </a>
                 </li>
+                @endif
+
+                @if(auth()->role == 'admin' && auth()->role == 'staff')
                 <li class="nav-item">
                     <a href="{{ base_url('jobpost') }}">
                         <i class="fas fa-newspaper"></i>
                         <p>Post a Job</p>
                     </a>
                 </li>
+                @endif
+                <li class="nav-item">
+                    <a href="{{ base_url('jobs') }}">
+                        <i class="fas fa-scroll"></i>
+                        <p>Jobs</p>
+                    </a>
+                </li>
             </ul>
-            @endif
         </div>
     </div>
 </div>
