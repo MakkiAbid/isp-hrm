@@ -38,8 +38,9 @@
                     @endif
                 </div>
             </div>
-            @if(auth()->role == 'admin')
+
             <ul class="nav nav-primary">
+                @if(auth()->role == 'admin')
                 <li class="nav-item">
                     <a href="{{ base_url('admin') }}">
                         <i class="fas fa-user-shield"></i>
@@ -78,7 +79,7 @@
                 </li>
                 @endif
 
-                @if(auth()->role == 'admin' && auth()->role == 'staff')
+                @if(auth()->role == 'admin' || auth()->role == 'staff')
                 <li class="nav-item">
                     <a href="{{ base_url('jobpost') }}">
                         <i class="fas fa-newspaper"></i>
@@ -86,6 +87,7 @@
                     </a>
                 </li>
                 @endif
+
                 <li class="nav-item">
                     <a href="{{ base_url('jobs') }}">
                         <i class="fas fa-scroll"></i>

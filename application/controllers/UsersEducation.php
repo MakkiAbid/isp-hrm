@@ -26,7 +26,6 @@ class UsersEducation extends My_Controller
                     ]);
                 }
 
-
                 return $this->JSONResponse([
                    'error' => false,
                    'form' => false,

@@ -8,7 +8,8 @@
         <div class="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card-header">
+                    <div class="card">
+                        <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col">
                                 <div class="card-title">
@@ -20,12 +21,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
+                        <div class="card-body">
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Marks Type</th>
+                                <th scope="col">Duration</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -34,6 +36,7 @@
                             <tr>
                                 <td>{{ $education->education }}</td>
                                 <td>{{ ucwords($education->marks_type )}}</td>
+                                <td>{{ $education->duration }}</td>
                                 <td>
                                     <a href="{{ base_url('educationtypes/edit/'.$education->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{ base_url('educationtypes/delete/'.$education->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>
@@ -43,7 +46,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>

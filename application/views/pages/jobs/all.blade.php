@@ -21,7 +21,7 @@
                         <p class="card-text">Minimum Experience: {{ $job->minimum_experience == 0 ? 'Fresher' : $job->minimum_experience.' Years' }}</p>
                         <p class="card-text">Last Submission Date: {{ date('F j, Y', strtotime($job->last_submission_date)) }}</p>
                         <p class="card-text">{{ $job->description }}</p>
-                        <a href="{{ base_url('jobapply/apply'.$job->id) }}" class="btn btn-sm btn-primary">Apply to Job</a>
+                        <a href="{{ base_url('jobapply/apply/'.$job->id) }}" class="btn btn-sm btn-primary job-apply">Apply to Job</a>
                     </div>
                 </div>
             @empty

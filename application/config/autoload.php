@@ -140,5 +140,6 @@ $autoload['model'] = array(
     'UsersExpModel',
     'CampusModel',
     'DepartmentsModel',
-    'JobPostModel'
+    'JobPostModel',
+    'JobApplyModel'
 );

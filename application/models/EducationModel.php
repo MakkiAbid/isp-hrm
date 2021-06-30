@@ -13,6 +13,11 @@ class EducationModel extends Model
 
     public function education_type()
     {
-        return $this->hasOne(EducationTypesModel::class, 'id', 'education_type_id');
+        return $this->belongsTo(EducationTypesModel::class, 'education_type_id', 'id');
+    }
+
+    public function candidate_stats()
+    {
+        return $this->belongsTo(CandidateStatsModel::class);
     }
 }

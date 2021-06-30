@@ -34,6 +34,11 @@
                                 </select>
                                 <div class="invalid-feedback marks_type-feedback"></div>
                             </div>
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <input name="duration" type="text" class="form-control" id="duration" placeholder="2 Years, 4 Years etc.">
+                                <div class="invalid-feedback duration-feedback"></div>
+                            </div>
                         </div>
                         <div class="card-action">
                             <button type="submit" name="btn" class="btn btn-primary btn-sm">Add Education</button>

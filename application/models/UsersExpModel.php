@@ -11,4 +11,9 @@ class UsersExpModel extends Model
     {
         return $this->belongsTo(UserModel::class);
     }
+
+    public function candidate_stats()
+    {
+        return $this->belongsTo(CandidateStatsModel::class);
+    }
 }

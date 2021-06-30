@@ -31,6 +31,11 @@ class EducationTypes extends My_Controller
                     'field' => 'marks_type',
                     'label' => 'Marks Type',
                     'rules' => 'required'
+                ],
+                [
+                    'field' => 'duration',
+                    'label' => 'Duration',
+                    'rules' => 'required|is_numeric'
                 ]
             );
             $this->form_validation->set_rules($config);
@@ -44,7 +49,8 @@ class EducationTypes extends My_Controller
                 try {
                     EducationTypesModel::create([
                        'education' => $this->input->post('education'),
-                       'marks_type' => strtoupper($this->input->post('marks_type'))
+                       'marks_type' => strtoupper($this->input->post('marks_type')),
+                       'duration' => $this->input->post('duration')
                     ]);
 
                     return $this->JSONResponse([
@@ -79,6 +85,11 @@ class EducationTypes extends My_Controller
                     'field' => 'marks_type',
                     'label' => 'Marks Type',
                     'rules' => 'required'
+                ],
+                [
+                    'field' => 'duration',
+                    'label' => 'Duration',
+                    'rules' => 'required|is_numeric'
                 ]
             );
             $this->form_validation->set_rules($config);
@@ -94,7 +105,8 @@ class EducationTypes extends My_Controller
                     if($education) {
                         $education->update([
                             'education' => $this->input->post('education'),
-                            'marks_type' => $this->input->post('marks_type')
+                            'marks_type' => $this->input->post('marks_type'),
+                            'duration' => $this->input->post('duration')
                         ]);
 
                         return $this->JSONResponse([

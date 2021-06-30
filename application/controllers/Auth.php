@@ -105,12 +105,20 @@ class Auth extends My_Controller
                 ]);
             }else{
                 try {
-                     UserModel::create([
+                     $user = UserModel::create([
                         'name' => $this->input->post('name'),
                         'email' => $this->input->post('email'),
                         'role' => 'candidate',
                         'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
                     ]);
+
+                     CandidateStatsModel::create([
+                        'user_id' => $user->id,
+                        'total_education' => 0,
+                        'total_experience' => 0
+                     ]);
+
+
 
                         return $this->JSONResponse([
                             'error' => false,

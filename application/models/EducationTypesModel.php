@@ -12,8 +12,8 @@ class EducationTypesModel extends Model
         return $this->hasMany(JobPostModel::class);
     }
 
-    public function education()
+    public function educations()
     {
-        return $this->belongsTo(EducationModel::class, 'education_type_id', 'id');
+        return $this->hasMany(EducationModel::class, 'education_type_id', 'id');
     }
 }

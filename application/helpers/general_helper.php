@@ -6,6 +6,9 @@
 * @returns CI instance
 *
 */
+
+use Carbon\Carbon;
+
 if(!function_exists('getInstance')){
 	function getInstance(){
 		return $CI =& get_instance();
@@ -68,4 +71,21 @@ function getCountStaff() {
 
 function getCountCandidates() {
     return UserModel::where('role', 'candidate')->count();
+}
+
+
+function getTotalEducationYears($user){
+    $educations = EducationModel::select('education_type_id')->where('user_id', $user)->distinct()->get();
+    $total_education_years = 0;
+    foreach ($educations as $education){
+        $total_education_years += (int)(EducationTypesModel::where('id', $education->education_type_id)->first())->duration;
+    }
+    return $total_education_years;
+}
+
+function getTotalExp($user) {
+    $exp = UsersExpModel::where('user_id', $user)->first();
+    $end_date = Carbon::parse($exp->end_date);
+    $diffYears = $end_date->diffInYears($exp->start_date);
+    return $diffYears;
 }
