@@ -21,7 +21,7 @@ class JobApply extends My_Controller
                             try {
                                 JobApplyModel::create([
                                     'user_id' => auth()->id,
-                                    'job_id' => $job->id
+                                    'job_post_id' => $job->id
                                 ]);
 
                                 return $this->JSONResponse([

@@ -88,12 +88,21 @@
                 </li>
                 @endif
 
+                @if(auth()->role == 'candidate')
                 <li class="nav-item">
                     <a href="{{ base_url('jobs') }}">
                         <i class="fas fa-scroll"></i>
-                        <p>Jobs</p>
+                        <p>Find Jobs</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ base_url('jobstatus') }}">
+                       <i class="fas fa-info-circle"></i>
+                        <p>Check Job Status</p>
+                    </a>
+                </li>
+                @endif
             </ul>
         </div>
     </div>

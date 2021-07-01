@@ -112,14 +112,6 @@ class Auth extends My_Controller
                         'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
                     ]);
 
-                     CandidateStatsModel::create([
-                        'user_id' => $user->id,
-                        'total_education' => 0,
-                        'total_experience' => 0
-                     ]);
-
-
-
                         return $this->JSONResponse([
                             'error' => false,
                             'form' => false,

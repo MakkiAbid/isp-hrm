@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 30, 2021 at 11:35 AM
+-- Generation Time: Jul 01, 2021 at 08:22 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -105,19 +105,19 @@ DROP TABLE IF EXISTS `job_apply`;
 CREATE TABLE IF NOT EXISTS `job_apply` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `job_id` int(11) NOT NULL,
+  `job_post_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `job_id` (`job_id`)
+  KEY `job_id` (`job_post_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `job_apply`
 --
 
-INSERT INTO `job_apply` (`id`, `user_id`, `job_id`, `created_at`, `updated_at`) VALUES
+INSERT INTO `job_apply` (`id`, `user_id`, `job_post_id`, `created_at`, `updated_at`) VALUES
 (4, 20, 4, '2021-06-30 06:27:21', '2021-06-30 06:27:21');
 
 -- --------------------------------------------------------
@@ -294,7 +294,7 @@ INSERT INTO `users_experience` (`id`, `user_id`, `company`, `designation`, `star
 --
 ALTER TABLE `job_apply`
   ADD CONSTRAINT `job_apply_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `job_apply_ibfk_2` FOREIGN KEY (`job_id`) REFERENCES `job_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `job_apply_ibfk_2` FOREIGN KEY (`job_post_id`) REFERENCES `job_post` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `job_post`

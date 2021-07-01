@@ -21,4 +21,9 @@ class JobPostModel extends Model
     {
         return $this->belongsTo(CampusModel::class);
     }
+
+    public function job_apply()
+    {
+        return $this->hasMany(JobApplyModel::class);
+    }
 }
