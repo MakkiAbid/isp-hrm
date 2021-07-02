@@ -58,5 +58,10 @@ class UserModel extends Model{
         return $this->hasMany(UsersExpModel::class, 'user_id', 'id');
     }
 
+    public function job_apply()
+    {
+        return $this->hasMany(JobApplyModel::class);
+    }
+
 
 }

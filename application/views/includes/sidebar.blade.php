@@ -77,6 +77,13 @@
                         <p>Education Types</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ base_url('jobapply') }}">
+                        <i class="fab fa-accusoft"></i>
+                        <p>Applied Candidates</p>
+                    </a>
+                </li>
                 @endif
 
                 @if(auth()->role == 'admin' || auth()->role == 'staff')

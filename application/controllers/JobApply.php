@@ -6,6 +6,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class JobApply extends My_Controller
 {
+
+    public function index()
+    {
+        $applied_candidates = JobApplyModel::all();
+        $this->view('pages.applied_jobs.all_candidates', compact('applied_candidates'));
+    }
+
     public function apply($job_id)
     {
         $job = JobPostModel::where('id', $job_id)->first();
@@ -77,6 +84,12 @@ class JobApply extends My_Controller
             }
         }
 
+    }
+
+    public function resume($id)
+    {
+        $user = UserModel::where('id', $id)->first();
+        $this->view('pages.applied_jobs.resume', compact('user'));
     }
 
 }

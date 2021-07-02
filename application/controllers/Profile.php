@@ -14,7 +14,8 @@ class Profile extends My_Controller
 
     public function index()
     {
-        echo $this->view('pages.profile.edit');
+        $user_info = UserModel::where('id', auth()->id)->first();
+        echo $this->view('pages.profile.edit', compact('user_info'));
     }
 
 

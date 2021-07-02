@@ -11,4 +11,9 @@ class JobApplyModel extends Model
     {
         return $this->belongsTo(JobPostModel::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(UserModel::class);
+    }
 }

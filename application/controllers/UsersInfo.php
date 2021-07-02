@@ -63,7 +63,12 @@ class UsersInfo extends My_Controller
                 [
                     'field' => 'cnic',
                     'label' => 'CNIC',
-                    'rules' => 'required|regex_match[/^([0-9]{5})[\-]([0-9]{7})[\-]([0-9]{1})+/]|is_unique[personal_info.cnic]'
+                    'rules' => 'required|regex_match[/^([0-9]{5})[\-]([0-9]{7})[\-]([0-9]{1})+/]'
+                ],
+                [
+                    'field' => 'bio',
+                    'label' => 'Bio',
+                    'rules' => 'required'
                 ]
             );
             $this->form_validation->set_rules($config);
@@ -75,22 +80,26 @@ class UsersInfo extends My_Controller
                 ]);
             }else{
                 try{
-                    UsersInfoModel::create([
-                        'user_id' => auth()->id,
-                        'city' => $this->input->post('city'),
-                        'address' => $this->input->post('address'),
-                        'gender' => $this->input->post('gender'),
-                        'marital_status' => $this->input->post('marital_status'),
-                        'nationality' => $this->input->post('nationality'),
-                        'religion' => $this->input->post('religion'),
-                        'cnic' => $this->input->post('cnic')
-                    ]);
+                    $user = UsersInfoModel::where('user_id', auth()->id)->first();
+                    if($user) {
+                        $user->update([
+                            'bio' => $this->input->post('bio'),
+                            'dob' => $this->input->post('dob'),
+                            'city' => $this->input->post('city'),
+                            'address' => $this->input->post('address'),
+                            'gender' => $this->input->post('gender'),
+                            'marital_status' => $this->input->post('marital_status'),
+                            'nationality' => $this->input->post('nationality'),
+                            'religion' => $this->input->post('religion'),
+                            'cnic' => $this->input->post('cnic')
+                        ]);
 
-                    return $this->JSONResponse([
-                       'error' => false,
-                       'form' => false,
-                       'messages' => 'Personal Information updated successfully!'
-                    ]);
+                        return $this->JSONResponse([
+                            'error' => false,
+                            'form' => false,
+                            'messages' => 'Personal Information updated successfully!'
+                        ]);
+                    }
 
                 }catch (\Exception $e){
                     return $this->JSONResponse([

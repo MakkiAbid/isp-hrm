@@ -112,6 +112,10 @@ class Auth extends My_Controller
                         'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
                     ]);
 
+                     UsersInfoModel::create([
+                        'user_id' => $user->id
+                     ]);
+
                         return $this->JSONResponse([
                             'error' => false,
                             'form' => false,
