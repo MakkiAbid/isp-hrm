@@ -73,6 +73,22 @@ function getCountCandidates() {
     return UserModel::where('role', 'candidate')->count();
 }
 
+function getCountActiveJobs() {
+    return JobPostModel::where('is_publish', 1)->count();
+}
+
+function getCountInActiveJobs() {
+    return JobPostModel::where('is_publish', 0)->count();
+}
+
+function getCountAppliedCandidates() {
+    return JobApplyModel::all()->count();
+}
+
+function getCountJobAppliedCandidate() {
+    return JobApplyModel::where('user_id', auth()->id)->count();
+}
+
 
 function getTotalEducationYears($user){
     $educations = EducationModel::select('education_type_id')->where('user_id', $user)->distinct()->get();

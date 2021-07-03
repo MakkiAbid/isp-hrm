@@ -40,6 +40,20 @@
             </div>
 
             <ul class="nav nav-primary">
+                <li class="nav-item">
+                    <a href="{{ base_url() }}">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                @if(auth()->role == 'candidate')
+                    <li class="nav-item">
+                        <a href="{{ base_url('profile') }}">
+                            <i class="fas fa-id-card-alt"></i>
+                            <p>Update Profile</p>
+                        </a>
+                    </li>
+                @endif
                 @if(auth()->role == 'admin')
                 <li class="nav-item">
                     <a href="{{ base_url('admin') }}">
@@ -78,12 +92,6 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ base_url('jobapply') }}">
-                        <i class="fab fa-accusoft"></i>
-                        <p>Applied Candidates</p>
-                    </a>
-                </li>
                 @endif
 
                 @if(auth()->role == 'admin' || auth()->role == 'staff')
@@ -91,6 +99,13 @@
                     <a href="{{ base_url('jobpost') }}">
                         <i class="fas fa-newspaper"></i>
                         <p>Post a Job</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ base_url('jobapply') }}">
+                        <i class="fab fa-accusoft"></i>
+                        <p>Applied Candidates</p>
                     </a>
                 </li>
                 @endif

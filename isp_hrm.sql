@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 01, 2021 at 08:22 AM
+-- Generation Time: Jul 03, 2021 at 08:32 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `education_types` (
 INSERT INTO `education_types` (`id`, `education`, `marks_type`, `duration`, `created_at`, `updated_at`) VALUES
 (15, 'Matriculation', 'PERCENTAGE', 10, '2021-06-12 03:41:54', '2021-06-12 03:41:54'),
 (16, 'BS CS', 'CGPA', 4, '2021-06-12 04:38:11', '2021-06-12 04:38:11'),
-(17, 'Velit in ducimus od', 'GRADE', 2, '2021-06-16 06:54:58', '2021-06-16 06:54:58'),
+(17, 'Intermediate', 'PERCENTAGE', 2, '2021-06-16 06:54:58', '2021-06-16 06:54:58'),
 (18, 'Sunt minus dolor lab', 'PERCENTAGE', 1, '2021-06-16 06:58:59', '2021-06-16 06:58:59');
 
 -- --------------------------------------------------------
@@ -165,8 +165,11 @@ DROP TABLE IF EXISTS `personal_info`;
 CREATE TABLE IF NOT EXISTS `personal_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `bio` text NOT NULL,
   `city` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `dob` date NOT NULL,
   `gender` varchar(255) NOT NULL,
   `marital_status` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
@@ -176,18 +179,19 @@ CREATE TABLE IF NOT EXISTS `personal_info` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `personal_info`
 --
 
-INSERT INTO `personal_info` (`id`, `user_id`, `city`, `address`, `gender`, `marital_status`, `nationality`, `religion`, `cnic`, `created_at`, `updated_at`) VALUES
-(1, 1, 'multan', 'Nesciunt enim fuga', 'male', 'married', 'Nemo rerum velit rep', 'Assumenda ad sed ill', '36302-1234567-8', '2021-06-24 07:56:19', '2021-06-14 03:12:10'),
-(2, 20, 'karachi', 'Ut aut aut duis aute', 'female', 'single', 'Quo enim fuga Ex en', 'Duis officiis est a', '36302-1234567-7', '2021-06-24 07:58:05', '2021-06-15 03:11:13'),
-(3, 25, 'islamabad', 'Quia velit minim si', 'female', 'married', 'In et commodo esse s', 'Et blanditiis perspi', '36302-1234567-3', '2021-06-24 07:58:13', '2021-06-16 07:55:20'),
-(4, 26, 'rawalpindi', 'Officiis dolorem iur', 'female', 'married', 'Id omnis perferendi', 'Vel corporis natus a', '36302-1234567-4', '2021-06-24 07:58:34', '2021-06-16 07:57:49'),
-(5, 21, 'lahore', 'some address', 'male', 'single', 'pakistnai', 'islam', '36302-8081443-5', '2021-06-18 12:40:22', '0000-00-00 00:00:00');
+INSERT INTO `personal_info` (`id`, `user_id`, `bio`, `city`, `address`, `phone`, `dob`, `gender`, `marital_status`, `nationality`, `religion`, `cnic`, `created_at`, `updated_at`) VALUES
+(1, 1, '', 'multan', 'Nesciunt enim fuga', '0', '0000-00-00', 'male', 'married', 'Nemo rerum velit rep', 'Assumenda ad sed ill', '36302-1234567-8', '2021-06-24 07:56:19', '2021-06-14 03:12:10'),
+(2, 20, 'I am a front-end developer with more than 3 years of experience writing html, css, and js. I\'m motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.', 'karachi', 'Ut aut aut duis aute', '03039373093', '1999-12-06', 'female', 'single', 'Quo enim fuga Ex en', 'Duis officiis est a', '36302-1234567-7', '2021-07-02 12:30:11', '2021-06-15 03:11:13'),
+(3, 25, '', 'islamabad', 'Quia velit minim si', '0', '0000-00-00', 'female', 'married', 'In et commodo esse s', 'Et blanditiis perspi', '36302-1234567-3', '2021-06-24 07:58:13', '2021-06-16 07:55:20'),
+(4, 26, '', 'rawalpindi', 'Officiis dolorem iur', '0', '0000-00-00', 'female', 'married', 'Id omnis perferendi', 'Vel corporis natus a', '36302-1234567-4', '2021-06-24 07:58:34', '2021-06-16 07:57:49'),
+(5, 21, '', 'lahore', 'some address', '0', '0000-00-00', 'male', 'single', 'pakistnai', 'islam', '36302-8081443-5', '2021-06-18 12:40:22', '0000-00-00 00:00:00'),
+(6, 37, 'Enim voluptatem qui ', 'Non cumque aut amet', 'Est quia mollit nec', '0', '1983-07-05', 'female', 'married', 'Vero ut enim repelle', 'Tenetur iusto conseq', '36302-1234567-8', '2021-07-02 11:11:27', '2021-07-02 06:11:27');
 
 -- --------------------------------------------------------
 
@@ -205,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -214,9 +218,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
 (1, 'Some One', 'some@some.com', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'admin', NULL, NULL),
 (20, 'Candidate', 'candidate@candidate.com', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'candidate', '2021-06-07 03:35:40', '2021-06-07 03:35:40'),
-(21, 'Staff', 'staff@staff.com', '$2y$10$xK4VYAz5rE.DrESRYWyPauPODsXD8Y6xX9TOrBRcHKAq81/00kM1u', 'staff', '2021-06-15 03:11:13', '2021-06-15 03:11:13'),
+(21, 'Staff', 'staff@staff.com', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'staff', '2021-06-15 03:11:13', '2021-06-15 03:11:13'),
 (25, 'Rogan Kerr', 'test3@candidate.com', '$2y$10$qADNSHDceps4a75paFL81ebA1P5ToNsGFa8emtFPpCq8lABqNBRl2', 'candidate', '2021-06-16 07:55:20', '2021-06-16 07:55:20'),
-(26, 'Lacota Woods', 'test2@candidate.com', '$2y$10$BlnDKvW/Opgjn37Wl9docutFRfbkowPhSFqCzqo08HAhix.Mmx2zi', 'candidate', '2021-06-16 07:57:49', '2021-06-16 07:57:49');
+(26, 'Lacota Woods', 'test2@candidate.com', '$2y$10$BlnDKvW/Opgjn37Wl9docutFRfbkowPhSFqCzqo08HAhix.Mmx2zi', 'candidate', '2021-06-16 07:57:49', '2021-06-16 07:57:49'),
+(37, 'testting', 'test@testinginfo.com', '$2y$10$qhtwlW6cn5vYKsLhf.Puw.8ksL5ygxiWthkbkB9jwkwEVNI6GE55G', 'candidate', '2021-07-02 05:58:02', '2021-07-02 05:58:02');
 
 -- --------------------------------------------------------
 
@@ -229,8 +234,8 @@ CREATE TABLE IF NOT EXISTS `users_education` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `education_type_id` int(11) NOT NULL,
-  `obtained` int(11) NOT NULL,
-  `total` int(11) NOT NULL,
+  `obtained` varchar(255) NOT NULL,
+  `total` varchar(255) NOT NULL,
   `year` varchar(255) NOT NULL,
   `institute` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -245,16 +250,15 @@ CREATE TABLE IF NOT EXISTS `users_education` (
 --
 
 INSERT INTO `users_education` (`id`, `user_id`, `education_type_id`, `obtained`, `total`, `year`, `institute`, `created_at`, `updated_at`) VALUES
-(2, 1, 15, 5, 48, '1997', 'Amet et voluptates ', '2021-06-12 07:34:00', '2021-06-12 07:34:00'),
-(3, 25, 16, 28, 51, '1994', 'Blanditiis ut fugiat', '2021-06-19 07:04:39', '2021-06-12 07:34:00'),
-(4, 20, 15, 62, 97, '1977', 'Reprehenderit eiusm', '2021-06-19 07:04:46', '2021-06-12 07:34:00'),
-(5, 26, 15, 64, 78, '1983', 'Esse voluptatibus e', '2021-06-19 07:04:27', '2021-06-14 05:29:12'),
-(6, 1, 16, 93, 40, '1983', 'Ratione nisi elit e', '2021-06-14 05:29:12', '2021-06-14 05:29:12'),
-(7, 1, 16, 93, 40, '1983', 'Ratione nisi elit e', '2021-06-14 05:29:30', '2021-06-14 05:29:30'),
-(8, 26, 16, 3, 4, '2001', 'isp', '2021-06-19 07:04:27', '2021-06-14 05:29:12'),
-(12, 20, 16, 62, 97, '1977', 'Reprehenderit eiusm', '2021-06-19 07:04:46', '2021-06-12 07:34:00'),
-(13, 20, 17, 62, 97, '1977', 'Reprehenderit eiusm', '2021-06-19 07:04:46', '2021-06-12 07:34:00'),
-(14, 20, 17, 62, 97, '1977', 'Reprehenderit eiusm', '2021-06-19 07:04:46', '2021-06-12 07:34:00');
+(2, 1, 15, '5', '48', '1997', 'Amet et voluptates ', '2021-06-12 07:34:00', '2021-06-12 07:34:00'),
+(3, 25, 16, '28', '51', '1994', 'Blanditiis ut fugiat', '2021-06-19 07:04:39', '2021-06-12 07:34:00'),
+(4, 20, 15, '62', '100', '2014', 'PISJ', '2021-07-02 12:53:07', '2021-06-12 07:34:00'),
+(5, 26, 15, '64', '78', '1983', 'Esse voluptatibus e', '2021-06-19 07:04:27', '2021-06-14 05:29:12'),
+(6, 1, 16, '93', '40', '1983', 'Ratione nisi elit e', '2021-06-14 05:29:12', '2021-06-14 05:29:12'),
+(7, 1, 16, '93', '40', '1983', 'Ratione nisi elit e', '2021-06-14 05:29:30', '2021-06-14 05:29:30'),
+(8, 26, 16, '3', '4', '2001', 'isp', '2021-06-19 07:04:27', '2021-06-14 05:29:12'),
+(12, 20, 16, '3.5', '4.0', '2021', 'LUMS', '2021-07-02 12:52:31', '2021-06-12 07:34:00'),
+(13, 20, 17, '74', '100', '2016', 'PISJ', '2021-07-02 12:52:27', '2021-06-12 07:34:00');
 
 -- --------------------------------------------------------
 
@@ -274,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `users_experience` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users_experience`
@@ -283,7 +287,8 @@ CREATE TABLE IF NOT EXISTS `users_experience` (
 INSERT INTO `users_experience` (`id`, `user_id`, `company`, `designation`, `start_date`, `end_date`, `created_at`, `updated_at`) VALUES
 (1, 25, 'Delgado and Matthews Co', 'Ea iusto eiusmod aut', '1975-04-14', '1978-01-06', '2021-06-30 09:08:06', '2021-06-14 07:24:27'),
 (2, 26, 'Nicholson and Foreman Trading', 'Nostrud rerum in ad ', '2007-06-06', '2009-12-24', '2021-06-30 09:08:15', '2021-06-14 07:24:27'),
-(3, 20, 'eadcjkahsdjk', 'skjadkjadNostrud rerum in ad ', '2006-06-06', '2021-12-24', '2021-06-30 09:45:04', '2021-06-14 07:24:27');
+(3, 20, 'Cyclone Coders', 'Associate Software Engineer', '2019-01-01', '2020-12-20', '2021-07-02 12:35:45', '2021-06-14 07:24:27'),
+(4, 20, 'Bisma Collection', 'Software Engineer\r\n', '2021-01-01', '2021-06-02', '2021-07-02 12:36:08', '2021-06-14 07:24:27');
 
 --
 -- Constraints for dumped tables
