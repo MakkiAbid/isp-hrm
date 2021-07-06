@@ -134,4 +134,142 @@ class Staff extends My_Controller
         }
     }
 
+    public function edit($id)
+    {
+        if($this->input->is_ajax_request()) {
+            $config = array(
+                [
+                    'field' => 'name',
+                    'label' => 'Full name',
+                    'rules' => 'required'
+                ],
+                [
+                    'field' => 'email',
+                    'label' => 'Email',
+                    'rules' => 'required|valid_email'
+                ],
+                [
+                    'field' => 'address',
+                    'label' => 'Address',
+                    'rules' => 'required'
+                ],
+                [
+                    'field' => 'city',
+                    'label' => 'City',
+                    'rules' => 'required'
+                ],
+                [
+                    'field' => 'dob',
+                    'label' => 'Date of Birth',
+                    'rules' => 'required'
+                ],
+                [
+                    'field' => 'gender',
+                    'label' => 'Gender',
+                    'rules' => 'required|in_list[male,female]'
+                ],
+                [
+                    'field' => 'marital_status',
+                    'label' => 'Marital Status',
+                    'rules' => 'required|in_list[single,married]'
+                ],
+                [
+                    'field' => 'nationality',
+                    'label' => 'Nationality',
+                    'rules' => 'required'
+                ],
+                [
+                    'field' => 'religion',
+                    'label' => 'Religion',
+                    'rules' => 'required'
+                ],
+                [
+                    'field' => 'cnic',
+                    'label' => 'CNIC',
+                    'rules' => 'required|regex_match[/^([0-9]{5})[\-]([0-9]{7})[\-]([0-9]{1})+/]'
+                ]
+
+            );
+            $this->form_validation->set_rules($config);
+            if($this->form_validation->run() === FALSE) {
+                return $this->JSONResponse([
+                    'error' => true,
+                    'form' => true,
+                    'messages' => $this->form_validation->error_array()
+                ]);
+            }else{
+                try {
+                    $staff = UserModel::where('id', $id)->first();
+                    if($staff) {
+
+                        if($this->input->post('password')) {
+                            $staff->update([
+                                'name' => $this->input->post('name'),
+                                'email' => $this->input->post('email'),
+                                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+                            ]);
+                        }else {
+                            $staff->update([
+                                'name' => $this->input->post('name'),
+                                'email' => $this->input->post('email')
+                            ]);
+                        }
+
+                        $personal_info = UsersInfoModel::where('user_id', $staff->id)->first();
+
+                        $personal_info->update([
+                            'dob' => $this->input->post('dob'),
+                            'city' => $this->input->post('city'),
+                            'address' => $this->input->post('address'),
+                            'gender' => $this->input->post('gender'),
+                            'marital_status' => $this->input->post('marital_status'),
+                            'nationality' => $this->input->post('nationality'),
+                            'religion' => $this->input->post('religion'),
+                            'cnic' => $this->input->post('cnic')
+                        ]);
+
+
+                        return $this->JSONResponse([
+                            'error' => false,
+                            'form' => false,
+                            'redirect_url' => base_url('staff'),
+                            'messages' => 'Staff updated successfully'
+                        ]);
+                    }
+                }catch (\Exception $e){
+                    return $this->JSONResponse([
+                        'error' => true,
+                        'form' => false,
+                        'messages' => 'Something went wrong please try again'
+                    ]);
+                }
+            }
+        }else{
+            $staff = UserModel::where('id', $id)->first();
+            $this->view('pages.staff.edit', compact('staff'));
+        }
+    }
+
+    public function delete($id)
+    {
+        $staff = UserModel::where('id', $id)->first();
+        if($staff){
+            $staff->delete();
+            return $this->JSONResponse([
+                'error' => false,
+                'form' => false,
+                'redirect_url' => base_url('staff'),
+                'messages' => 'Staff deleted successfully'
+            ]);
+        }else{
+            return $this->JSONResponse([
+                'error' => true,
+                'form' => false,
+                'redirect_url' => base_url('staff'),
+                'messages' => 'Something went wrong please try again.'
+            ]);
+        }
+
+    }
+
 }

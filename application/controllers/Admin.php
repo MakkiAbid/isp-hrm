@@ -109,11 +109,19 @@ class Admin extends My_Controller
                 try {
                     $admin = UserModel::where('id', $id)->first();
                     if($admin) {
-                        $admin->update([
-                            'name' => $this->input->post('name'),
-                            'email' => $this->input->post('email'),
-                            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
-                        ]);
+
+                        if($this->input->post('password')) {
+                            $admin->update([
+                                'name' => $this->input->post('name'),
+                                'email' => $this->input->post('email'),
+                                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+                            ]);
+                        }else {
+                            $admin->update([
+                                'name' => $this->input->post('name'),
+                                'email' => $this->input->post('email')
+                            ]);
+                        }
 
                         return $this->JSONResponse([
                             'error' => false,
