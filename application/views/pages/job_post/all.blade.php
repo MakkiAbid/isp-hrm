@@ -48,9 +48,9 @@
                                         <td>{{ $job_post->last_submission_date }}</td>
                                         <td>
                                             @if($job_post->is_publish == 1)
-                                                <a href="{{ base_url('jobpost/update_jobstatus/'.$job_post->id) }}" class="btn btn-sm btn-primary">Active</a>
+                                                <a href="{{ base_url('jobpost/update_jobstatus/'.$job_post->id) }}" class="btn btn-sm btn-warning btn-change-status">Inactive</a>
                                             @else
-                                                <a href="{{ base_url('jobpost/update_jobstatus/'.$job_post->id) }}" class="btn btn-sm btn-warning">Inactive</a>
+                                                <a href="{{ base_url('jobpost/update_jobstatus/'.$job_post->id) }}" class="btn btn-sm btn-primary btn-change-status">Active</a>
                                             @endif
                                             <a href="{{ base_url('jobpost/edit/'.$job_post->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
                                             <a href="{{ base_url('jobpost/delete/'.$job_post->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>

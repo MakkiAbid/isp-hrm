@@ -159,6 +159,22 @@ $(".job-apply").on('click', function (event) {
     })
 })
 
+$(".btn-change-status").on('click', function (event) {
+    event.preventDefault();
+    $.ajax({
+        url: $(this).attr('href'),
+        type: 'POST',
+        success: function (data) {
+            notification(data.messages, 'success');
+            if(data.redirect_url){
+                setTimeout(() => {
+                    location.href = data.redirect_url;
+                }, 2000);
+            }
+        }
+    })
+})
+
 
 // Delete AJAX
 $(".delete-btn").on('click', function (event) {

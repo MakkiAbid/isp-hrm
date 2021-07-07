@@ -235,7 +235,7 @@ class JobPost extends My_Controller
                 'error' => false,
                 'form' => false,
                 'redirect_url' => base_url('jobpost'),
-                'messages' => 'Status changed successfully'
+                'messages' => 'Job Status changed successfully'
             ]);
         }else{
             return $this->JSONResponse([

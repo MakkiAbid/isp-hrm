@@ -34,7 +34,6 @@
                                 @forelse($departments as $department)
                                     <tr>
                                         <td>{{ $department->name }}</td>
-                                        <td>{{ $department->city }}</td>
                                         <td>
                                             <a href="{{ base_url('departments/edit/'.$department->id) }}" class="btn btn-sm btn-success"><i class="fas fa-pencil-alt"></i></a>
                                             <a href="{{ base_url('departments/delete/'.$department->id) }}" class="btn btn-sm btn-danger delete-btn"><i class="fas fa-trash"></i></a>

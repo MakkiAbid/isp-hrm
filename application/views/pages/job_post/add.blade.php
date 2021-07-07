@@ -85,7 +85,7 @@
                                         <div class="col">
                                             <div class="form-group">
                                                 <label for="last_submission_date">Last Submission Date</label>
-                                                <input class="form-control" name="last_submission_date" type="date" id="last_submission_date">
+                                                <input max="{{ date('Y-m-d') }}" class="form-control" name="last_submission_date" type="date" id="last_submission_date">
                                                 <div class="invalid-feedback last_submission_date-feedback"></div>
                                             </div>
                                         </div>
