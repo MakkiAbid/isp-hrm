@@ -21,9 +21,15 @@
                         </div>
                         <div class="card-body">
                             <form action="{{ current_url() }}" method="get">
-                                <div class="row d-flex justify-content-end">
-                                    <div id="basic-datatables_filter" class="dataTables_filter mr-3">
-                                        <label>Search:<input name="search-term" type="search" class="form-control" placeholder=""></label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div id="basic-datatables_filter" class="dataTables_filter ml-3">
+                                            <label>Search:</label>
+                                            <input name="search-term" type="search" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <a href="{{ base_url('usersdetails') }}" class="btn btn-primary btn-sm ml-5 mt-4">Advance Search</a>
                                     </div>
                                 </div>
                             </form>
@@ -81,7 +87,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">More Information</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

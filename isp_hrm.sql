@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 03, 2021 at 08:32 AM
+-- Generation Time: Aug 02, 2021 at 12:25 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.4.0
 
@@ -65,8 +65,7 @@ CREATE TABLE IF NOT EXISTS `departments` (
 --
 
 INSERT INTO `departments` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(3, 'Accounts', '2021-06-17 10:38:51', '2021-06-17 10:38:51'),
-(4, 'CST', '2021-06-18 02:35:37', '2021-06-18 02:35:37');
+(3, 'Accounts', '2021-06-17 10:38:51', '2021-06-17 10:38:51');
 
 -- --------------------------------------------------------
 
@@ -111,14 +110,14 @@ CREATE TABLE IF NOT EXISTS `job_apply` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `job_id` (`job_post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `job_apply`
 --
 
 INSERT INTO `job_apply` (`id`, `user_id`, `job_post_id`, `created_at`, `updated_at`) VALUES
-(4, 20, 4, '2021-06-30 06:27:21', '2021-06-30 06:27:21');
+(8, 20, 3, '2021-08-02 04:54:19', '2021-08-02 04:54:19');
 
 -- --------------------------------------------------------
 
@@ -151,9 +150,8 @@ CREATE TABLE IF NOT EXISTS `job_post` (
 --
 
 INSERT INTO `job_post` (`id`, `department_id`, `education_types_id`, `campus_id`, `title`, `description`, `no_of_seats`, `minimum_experience`, `last_submission_date`, `is_publish`, `created_at`, `updated_at`) VALUES
-(3, 3, 15, 4, 'TEST JOB updated', 'some description updated', '5', '0', '2021-07-08', 0, '2021-06-18 08:02:46', '2021-06-18 03:02:46'),
-(4, 4, 15, 4, 'Ea a officia consequ', 'Eos iure voluptatem t ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum', '58', '10', '2022-01-20', 1, '2021-06-30 11:21:26', '2021-06-29 02:19:38'),
-(5, 3, 16, 4, 'Distinctio Nobis qu', 'Ducimus tempore in t ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum', '91', '4', '2021-03-11', 1, '2021-06-29 07:56:48', '2021-06-29 02:20:00');
+(3, 3, 15, 4, 'TEST JOB updated', 'some description updated', '5', '0', '2021-08-19', 1, '2021-08-02 07:31:59', '2021-08-02 02:31:59'),
+(5, 3, 16, 4, 'Distinctio Nobis qu', 'Ducimus tempore in t ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum', '91', '4', '2021-03-11', 0, '2021-07-07 08:32:42', '2021-07-07 03:32:42');
 
 -- --------------------------------------------------------
 
@@ -179,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `personal_info` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `personal_info`
@@ -190,8 +188,8 @@ INSERT INTO `personal_info` (`id`, `user_id`, `bio`, `city`, `address`, `phone`,
 (2, 20, 'I am a front-end developer with more than 3 years of experience writing html, css, and js. I\'m motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.', 'karachi', 'Ut aut aut duis aute', '03039373093', '1999-12-06', 'female', 'single', 'Quo enim fuga Ex en', 'Duis officiis est a', '36302-1234567-7', '2021-07-02 12:30:11', '2021-06-15 03:11:13'),
 (3, 25, '', 'islamabad', 'Quia velit minim si', '0', '0000-00-00', 'female', 'married', 'In et commodo esse s', 'Et blanditiis perspi', '36302-1234567-3', '2021-06-24 07:58:13', '2021-06-16 07:55:20'),
 (4, 26, '', 'rawalpindi', 'Officiis dolorem iur', '0', '0000-00-00', 'female', 'married', 'Id omnis perferendi', 'Vel corporis natus a', '36302-1234567-4', '2021-06-24 07:58:34', '2021-06-16 07:57:49'),
-(5, 21, '', 'lahore', 'some address', '0', '0000-00-00', 'male', 'single', 'pakistnai', 'islam', '36302-8081443-5', '2021-06-18 12:40:22', '0000-00-00 00:00:00'),
-(6, 37, 'Enim voluptatem qui ', 'Non cumque aut amet', 'Est quia mollit nec', '0', '1983-07-05', 'female', 'married', 'Vero ut enim repelle', 'Tenetur iusto conseq', '36302-1234567-8', '2021-07-02 11:11:27', '2021-07-02 06:11:27');
+(8, 40, '', 'Culpa dolor in offi', 'Quibusdam ratione ma', '', '0000-00-00', 'male', 'married', 'Ab aliqua Aute cupi', 'Incididunt fugit es', '36302-1234567-0', '2021-07-06 00:40:42', '2021-07-06 00:40:42'),
+(9, 41, '', 'Qui in velit praese', 'Voluptatum ea conseq', '9876543234', '1981-10-03', 'female', 'married', 'Enim enim facere dic', 'Eos debitis sed susc', '36302-1234567-8', '2021-07-07 08:19:52', '2021-07-07 03:19:52');
 
 -- --------------------------------------------------------
 
@@ -204,24 +202,43 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `remember_token` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Some One', 'some@some.com', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'admin', NULL, NULL),
-(20, 'Candidate', 'candidate@candidate.com', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'candidate', '2021-06-07 03:35:40', '2021-06-07 03:35:40'),
-(21, 'Staff', 'staff@staff.com', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'staff', '2021-06-15 03:11:13', '2021-06-15 03:11:13'),
-(25, 'Rogan Kerr', 'test3@candidate.com', '$2y$10$qADNSHDceps4a75paFL81ebA1P5ToNsGFa8emtFPpCq8lABqNBRl2', 'candidate', '2021-06-16 07:55:20', '2021-06-16 07:55:20'),
-(26, 'Lacota Woods', 'test2@candidate.com', '$2y$10$BlnDKvW/Opgjn37Wl9docutFRfbkowPhSFqCzqo08HAhix.Mmx2zi', 'candidate', '2021-06-16 07:57:49', '2021-06-16 07:57:49'),
-(37, 'testting', 'test@testinginfo.com', '$2y$10$qhtwlW6cn5vYKsLhf.Puw.8ksL5ygxiWthkbkB9jwkwEVNI6GE55G', 'candidate', '2021-07-02 05:58:02', '2021-07-02 05:58:02');
+INSERT INTO `users` (`id`, `name`, `email`, `remember_token`, `password`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Some One', 'some@some.com', '', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'admin', NULL, NULL),
+(20, 'Candidate', 'candidate@candidate.com', '', '$2y$10$281zbt1SLkJLWuqDY96s4.mzEJbcWAW.wEWb2oQBtTkA.XMs3j96q', 'candidate', '2021-06-07 03:35:40', '2021-06-07 03:35:40'),
+(25, 'Rogan Kerr', 'test3@candidate.com', '', '$2y$10$qADNSHDceps4a75paFL81ebA1P5ToNsGFa8emtFPpCq8lABqNBRl2', 'candidate', '2021-06-16 07:55:20', '2021-06-16 07:55:20'),
+(26, 'Lacota Woods', 'test2@candidate.com', '', '$2y$10$BlnDKvW/Opgjn37Wl9docutFRfbkowPhSFqCzqo08HAhix.Mmx2zi', 'candidate', '2021-06-16 07:57:49', '2021-06-16 07:57:49'),
+(38, 'test admin', 'test1@admin.com', '', '$2y$10$RWTVroSAaEwuWvVFPnoqPuXcRHpOJVYEQ04dascMV/kZebC8ZbGIO', 'admin', '2021-07-06 00:28:04', '2021-07-06 00:32:50'),
+(40, 'Staff', 'staff@staff.com', '', '$2y$10$U79L4VtGucCKTEVKi8ejh.SmfmlMPOHYyWSWu2nW.rvU0oHjG2rze', 'staff', '2021-07-06 00:40:42', '2021-07-06 00:40:42'),
+(41, 'test staff', 'test1@staff.com', '', '$2y$10$qYk3EOdSPXRS4F0Nzxs7xey2oKJ0Z1V/tPTWi9KqJTG1ANBeq8.Ci', 'staff', '2021-07-06 01:00:13', '2021-07-06 01:31:14');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `users_details_view`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `users_details_view`;
+CREATE TABLE IF NOT EXISTS `users_details_view` (
+`u_id` int(11)
+,`name` varchar(255)
+,`email` varchar(255)
+,`institute` varchar(255)
+,`company` varchar(255)
+,`designation` varchar(255)
+,`total_exp` bigint(21)
+);
 
 -- --------------------------------------------------------
 
@@ -289,6 +306,15 @@ INSERT INTO `users_experience` (`id`, `user_id`, `company`, `designation`, `star
 (2, 26, 'Nicholson and Foreman Trading', 'Nostrud rerum in ad ', '2007-06-06', '2009-12-24', '2021-06-30 09:08:15', '2021-06-14 07:24:27'),
 (3, 20, 'Cyclone Coders', 'Associate Software Engineer', '2019-01-01', '2020-12-20', '2021-07-02 12:35:45', '2021-06-14 07:24:27'),
 (4, 20, 'Bisma Collection', 'Software Engineer\r\n', '2021-01-01', '2021-06-02', '2021-07-02 12:36:08', '2021-06-14 07:24:27');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `users_details_view`
+--
+DROP TABLE IF EXISTS `users_details_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `users_details_view`  AS  select `users`.`id` AS `u_id`,`users`.`name` AS `name`,`users`.`email` AS `email`,`users_education`.`institute` AS `institute`,`users_experience`.`company` AS `company`,`users_experience`.`designation` AS `designation`,timestampdiff(YEAR,`users_experience`.`start_date`,`users_experience`.`end_date`) AS `total_exp` from ((`users` join `users_education`) join `users_experience`) where `users`.`id` = `users_education`.`user_id` and `users`.`id` = `users_experience`.`user_id` order by `users`.`id` ;
 
 --
 -- Constraints for dumped tables

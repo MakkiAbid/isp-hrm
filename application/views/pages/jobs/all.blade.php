@@ -26,7 +26,9 @@
                 </div>
             @empty
                 <div class="card-body">
-                    <p>No Jobs Available</p>
+                    <div class="alert alert-warning text-center">
+                        <p class="mt-2">No Jobs Available</p>
+                    </div>
                 </div>
             @endforelse
         </div>

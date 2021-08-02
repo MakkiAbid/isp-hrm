@@ -21,7 +21,7 @@ class JobApply extends My_Controller
                 if($job->minimum_experience <= getTotalExp(auth()->id)) {
                     if($job->last_submission_date >= Carbon::now()) {
 
-                        $job_exist = JobApplyModel::where('user_id', auth()->id)->where('job_id', $job_id)->get();
+                        $job_exist = JobApplyModel::where('user_id', auth()->id)->where('job_post_id', $job_id)->first();
 
                         if(!$job_exist) {
 
@@ -82,6 +82,14 @@ class JobApply extends My_Controller
                     'messages' => 'Your educational criteria is below for this job'
                 ]);
             }
+        } else {
+            return $this->JSONResponse([
+                'error' => false,
+                'form' => false,
+                'redirect_url' => base_url('jobs'),
+                'status' => 'danger',
+                'messages' => 'Something Went Wrong. Please Try again!'
+            ]);
         }
 
     }

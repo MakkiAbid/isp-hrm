@@ -45,7 +45,7 @@
                                     </tr>
                                 @empty
                                     <tr class="text-center">
-                                        <td colspan="3">You doesnt apply to any job yet!</td>
+                                        <td colspan="5">You have not applied to any job yet!</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
