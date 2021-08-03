@@ -29,7 +29,8 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        <a href="{{ base_url('usersdetails') }}" class="btn btn-primary btn-sm ml-5 mt-4">Advance Search</a>
+                                        <button type="submit" class="btn btn-primary btn-sm mt-4">Search</button>
+                                        <a href="{{ base_url('usersdetails') }}" class="btn btn-info btn-sm mt-4">Advance Search</a>
                                     </div>
                                 </div>
                             </form>

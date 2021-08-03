@@ -23,6 +23,7 @@ class UsersDetails extends My_Controller
                 ->orWhere('company', 'LIKE', "{$searchKeyWord}%")
                 ->orWhere('designation', 'LIKE', "{$searchKeyWord}%")
                 ->orWhere('total_exp', 'LIKE', "{$searchKeyWord}%")
+                ->orderBy('total_exp')
                 ->distinct()
                 ->get();
         }

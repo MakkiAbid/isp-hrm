@@ -39,6 +39,7 @@
                                     <th scope="col">Company</th>
                                     <th scope="col">Designation</th>
                                     <th scope="col">Total Experience</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +51,9 @@
                                         <td>{{ $user->company }}</td>
                                         <td>{{ $user->designation }}</td>
                                         <td>{{ $user->total_exp == 0 ? 'Fresher' : $user->total_exp.' Years' }}</td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="{{ base_url('jobapply/resume/'.$user->u_id) }}"><i class="fas fa-info-circle"></i></a>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr class="text-center">

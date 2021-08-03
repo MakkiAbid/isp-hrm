@@ -183,7 +183,7 @@
                         {{ ucwords($user->personal_info->city) }}
                         <div class="name">Address: </div>
                         {{ $user->personal_info->address }}
-                        <div class="name">Applied at</div>
+                        <div class="name">Registered at</div>
                         {{ date('F j, Y h:i A', strtotime($user->created_at)) }}
                     </div>
                 </div>
