@@ -21,11 +21,48 @@
                         </div>
                         <div class="card-body">
                             <form action="{{ current_url() }}" method="get">
-                                <div class="row d-flex justify-content-between">
-                                    <div class="col-12">
-                                        <div id="basic-datatables_filter" class="dataTables_filter ml-3">
-                                            <label>Search:</label>
-                                            <input name="search-term" type="search" class="form-control" placeholder="Search anything among candidates...">
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div id="basic-datatables_filter" class="dataTables_filter ml-3">
+                                                <label>Overall Search:</label>
+                                                <input name="search-term" type="search" class="form-control" placeholder="Search anything among candidates...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <label>Search By Name:</label>
+                                                <input name="search-by-name" type="search" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Search By Email:</label>
+                                                <input name="search-by-email" type="search" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Search By Institute:</label>
+                                                <input name="search-by-institute" type="search" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Search By Company:</label>
+                                                <input name="search-by-company" type="search" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Search By Designation:</label>
+                                                <input name="search-by-designation" type="search" class="form-control" placeholder="">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Search By Experience:</label>
+                                                <input name="search-by-totalexp" type="search" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row mt-4">
+                                            <div class="col-12">
+                                                <button class="btn btn-primary btn-block" type="submit">Advance Search</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
