@@ -3,6 +3,7 @@
 @section('title', 'Edit Profile')
 
 @section('content')
+
     <div class="content">
         <div class="page-inner">
                 <div class="row">

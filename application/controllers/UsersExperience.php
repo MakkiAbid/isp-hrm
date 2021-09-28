@@ -41,4 +41,26 @@ class UsersExperience extends My_Controller
         
     }
 
+    public function delete($id)
+    {
+        $education = UsersExpModel::where('id', $id)->first();
+        if($education){
+            $education->delete();
+            return $this->JSONResponse([
+                'error' => false,
+                'form' => false,
+                'redirect_url' => base_url('profile'),
+                'messages' => 'Experience removed successfully'
+            ]);
+        }else{
+            return $this->JSONResponse([
+                'error' => true,
+                'form' => false,
+                'redirect_url' => base_url('profile'),
+                'messages' => 'Something went wrong please try again.'
+            ]);
+        }
+
+    }
+
 }

@@ -41,4 +41,26 @@ class UsersEducation extends My_Controller
         }
     }
 
+    public function delete($id)
+    {
+        $education = EducationModel::where('id', $id)->first();
+        if($education){
+            $education->delete();
+            return $this->JSONResponse([
+                'error' => false,
+                'form' => false,
+                'redirect_url' => base_url('profile'),
+                'messages' => 'Education deleted successfully'
+            ]);
+        }else{
+            return $this->JSONResponse([
+                'error' => true,
+                'form' => false,
+                'redirect_url' => base_url('profile'),
+                'messages' => 'Something went wrong please try again.'
+            ]);
+        }
+
+    }
+
 }
